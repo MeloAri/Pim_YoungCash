@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.support-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    overflow: hidden;
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.chat-header {
+    background-color: #e7da1b;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.chat-body {
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.chat-footer button {
+    background-color: #e7da1b;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-footer button:hover {
+    background-color: #45a049;
+}
+
+.user-message {
+    text-align: right;
+    margin: 5px;
+}
+
+.bot-message {
+    text-align: left;
+    margin: 5px;
+    background-color: #e1f5fe;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+    </style>
+    <title>Suporte</title>
+    
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte ao Cliente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="support-container">
+        <div class="chat-box">
+            <div class="chat-header">
+                <h3>Suporte ao Cliente</h3>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <!-- As mensagens do bot aparecerão aqui -->
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="user-input" placeholder="Digite sua dúvida..." autofocus>
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       // Função para adicionar mensagens no chat
+function appendMessage(text, sender) {
+    const chatBody = document.getElementById('chat-body');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add(sender + '-message');
+    messageDiv.textContent = text;
+    chatBody.appendChild(messageDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;  // Rolagem para a última mensagem
+}
+
+// Função para simular a resposta do bot
+function botReply(userMessage) {
+    // Aqui você pode adicionar mais respostas dependendo da entrada do usuário
+    let response = '';
+
+    if (userMessage.includes('olá') || userMessage.includes('oi')) {
+        response = 'Olá! Como posso ajudá-lo hoje?';
+    } else if (userMessage.includes('problema') || userMessage.includes('dúvida')) {
+        response = 'Por favor, descreva seu problema em mais detalhes para que eu possa ajudar.';
+    } else if (userMessage.includes('preço') || userMessage.includes('valor')) {
+        response = 'Você pode verificar os preços atualizados em nossa página de preços.';
+    } else {
+        response = 'Desculpe, não entendi. Poderia reformular sua dúvida?';
+    }
+
+    appendMessage(response, 'bot');
+}
+
+// Função que é chamada quando o usuário envia uma mensagem
+function sendMessage() {
+    const userInput = document.getElementById('user-input').value;
+
+    // Verifica se há algum texto para enviar
+    if (userInput.trim() !== '') {
+        appendMessage(userInput, 'user');
+        document.getElementById('user-input').value = ''; // Limpa o campo de entrada
+        botReply(userInput);  // Responde ao usuário
+    }
+}
+
+// Adiciona um comportamento ao pressionar Enter no campo de input
+document.getElementById('user-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+ 
+    </script>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Finalizar Compra</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      max-width: 1000px;
+      margin: 30px auto;
+      gap: 30px;
+    }
+    .left, .right {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .left {
+      flex: 2;
+    }
+    .right {
+      flex: 1;
+      border-left: 1px solid #eee;
+    }
+    h2, h3 {
+      margin-top: 0;
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .payment-option {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .payment-option label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .payment-option img {
+      height: 20px;
+    }
+    .payment-info {
+      display: none;
+      margin-top: 10px;
+    }
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #5624d0;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .box-info {
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 20px;
+      border: 1px solid #ffeeba;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h2>Finalizar compra</h2>
+      <label>País</label>
+      <select>
+        <option>Brasil</option>
+        <option>Portugal</option>
+        <option>Outros</option>
+      </select>
+
+      <h3 style="margin-top: 30px;">Forma de pagamento</h3>
+
+      <!-- Pix -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('pix')"> <i class="fas fa-qrcode"></i> Pix</label>
+        <div id="pix" class="payment-info">
+          <input type="text" placeholder="CPF/CNPJ">
+          <p>Para concluir sua transação, redirecionaremos você para os servidores seguros do dLocal.</p>
+        </div>
+      </div>
+
+      <!-- Cartões -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('cartao')"> <i class="fas fa-credit-card"></i> Cards <img src="https://img.icons8.com/color/32/visa.png"/><img src="https://img.icons8.com/color/32/mastercard.png"/><img src="https://img.icons8.com/color/32/amex.png"/></label>
+        <div id="cartao" class="payment-info">
+          <input type="text" placeholder="Número do Cartão">
+          <input type="text" placeholder="Validade (MM/AA)">
+          <input type="text" placeholder="CVV">
+        </div>
+      </div>
+
+      <!-- Apple Pay -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('apple')"> <i class="fab fa-apple-pay"></i> Apple Pay</label>
+        <div id="apple" class="payment-info">
+          <p>Você será redirecionado para a carteira Apple.</p>
+        </div>
+      </div>
+
+      <!-- Google Pay -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('google')"> <i class="fab fa-google-pay"></i> Google Pay</label>
+        <div id="google" class="payment-info">
+          <p>Você será redirecionado para a carteira Google.</p>
+        </div>
+      </div>
+
+      <!-- Boleto -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('boleto')"> <i class="fas fa-barcode"></i> Boleto bancário</label>
+        <div id="boleto" class="payment-info">
+          <p>O boleto será gerado após a finalização.</p>
+        </div>
+      </div>
+
+      <!-- PayPal -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('paypal')"> <i class="fab fa-cc-paypal"></i> PayPal</label>
+        <div id="paypal" class="payment-info">
+          <input type="email" placeholder="E-mail PayPal">
+        </div>
+      </div>
+
+      <!-- Mercado Pago -->
+      <div class="payment-option">
+        <label><input type="radio" name="pay" onclick="showPayment('mp')"> <img src="https://logodownload.org/wp-content/uploads/2021/03/mercado-pago-logo-0.png" width="20"> Mercado Pago</label>
+        <div id="mp" class="payment-info">
+          <p>Você será redirecionado para o Mercado Pago.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div id="resumo-pedido"></div>
+
+      <button class="btn">🔒 Prosseguir</button>
+
+      <a href="estudo.html"><button class="btn"> Cancelar</button></a>
+
+      <p style="font-size: 14px; margin-top: 20px;">Garantia de devolução do dinheiro em 30 dias.</p>
+      <div class="box-info">
+        <strong>🚀 Comece a correr atrás do sucesso agora</strong>
+        <p>Junte-se a 10+ pessoas que se inscreveram neste curso nas últimas 24 horas.</p>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script>
+    function showPayment(id) {
+      document.querySelectorAll('.payment-info').forEach(div => div.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+    
+    // Recuperar carrinho
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    
+    const resumo = document.getElementById('resumo-pedido');
+    
+    if (carrinho.length === 0) {
+      resumo.innerHTML = '<p>Carrinho vazio!</p>';
+    } else {
+      let total = 0;
+      carrinho.forEach(curso => {
+        total += curso.preco;
+      });
+    
+      resumo.innerHTML = `
+        <p>Preço dos cursos: <strong>R$ ${total.toFixed(2)}</strong></p>
+        <p>Desconto aplicado: <strong style="color: green;">- R$0,00</strong></p>
+        <p><strong>Total a pagar: R$ ${total.toFixed(2)}</strong></p>
+      `;
+    }
+    </script>
+</body>
+</html>

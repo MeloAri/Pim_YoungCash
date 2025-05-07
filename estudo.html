@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educação Financeira Iniciante</title>
+    <style>
+
+        /* Importação de Fontes */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        /* Estilo Geral */
+        html , body {
+            width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #ffbb00;
+  padding: 20px;
+  color: #1c1d1f;
+}
+
+h2 {
+  margin-top: 40px;
+  font-size: 24px;
+  color: #1c1d1f;
+}
+
+.curso-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.curso-card {
+  background-color: #000000;
+  border: 1px solid #e7a900;
+  border-radius: 6px;
+  width: 220px;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.curso-card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.curso-card h3 {
+  font-size: 16px;
+  margin: 8px 0 4px;
+  color: #ffffff;
+}
+
+.autor {
+  font-size: 13px;
+  color: #e7a900;
+}
+
+.avaliacao {
+  font-size: 13px;
+  color: #b4690e;
+  font-weight: bold;
+}
+
+.preco {
+  margin: 6px 0;
+  color: #e7a900;
+}
+
+.preco-atual {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.preco-antigo {
+  text-decoration: line-through;
+  color: #e7a900;
+  font-size: 13px;
+}
+
+button {
+  background-color: #e7a900;
+  color: #1c1d1f;
+  border: none;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+.cabecalho {
+    width: 100vw;
+    margin-left: -60px;
+    margin-top: -40px;
+height: 90px;
+  background-color: #000000;
+  color: #e7a900;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ffeb3b; /* Linha amarela */
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.menu a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #e7a900;
+  font-weight: 300;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu a:hover {
+  color: #e7a900;
+}
+
+.icon-carrinho {
+            font-size: 37px;
+            cursor: pointer;
+            color: #e7a900;
+            margin-left: 97%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Botão Voltar ao Início -->
+
+
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cursos Recomendados</title>
+  <link rel="stylesheet" href="styles.css">
+  <header class="cabecalho">
+    <div class="logo">YoungCash</div>
+    <nav class="menu">
+      <a href="home.php">Início</a>
+      <a href="estudo.html">Aprenda</a>
+      <a href="formulários.html">Exercícios</a>
+      <a href="simulador_invest.html">Investimento</a>
+      <a href="perfil.php">Meu Perfil</a>
+    </nav>
+    
+  </header>
+  <div class="icon-carrinho" onclick="window.location.href='carrinho.html'">
+    🛒
+</div>
+  
+
+</head>
+<body>
+  <h2>Recomendado pra Você</h2>
+  <div class="curso-container">
+    <a href="cursos.html" class="curso-card">
+      <img src="img/educacao-financeira-5.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="cursos.html" class="curso-card">
+      <img src="img/educacao-financeira2.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira3.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira4.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira-5.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira6.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira7.webp" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira1.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira2.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+
+
+  </div>
+
+  <h2>Os alunos estão visualizando</h2>
+  <div class="curso-container">
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira1.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira2.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira3.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira4.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira-5.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira6.jpg" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira7.webp" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira1.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+
+    <a href="curso1.html" class="curso-card">
+      <img src="img/educacao-financeira2.png" alt="Curso 1">
+      <h3>Java COMPLETO Programação OO + Projetos</h3>
+      <p class="autor">Nelio Alves</p>
+      <p class="avaliacao">⭐ 4,8 (60.515)</p>
+      <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+      <button>Mais vendidos</button>
+    </a>
+  
+
+  <div class="curso-container">
+  <a href="curso1.html" class="curso-card">
+    <img src="img/educacao-financeira1.png" alt="Curso 1">
+    <h3>Java COMPLETO Programação OO + Projetos</h3>
+    <p class="autor">Nelio Alves</p>
+    <p class="avaliacao">⭐ 4,8 (60.515)</p>
+    <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+    <button>Mais vendidos</button>
+  </a>
+
+  <a href="curso1.html" class="curso-card">
+    <img src="img/educacao-financeira2.png" alt="Curso 1">
+    <h3>Java COMPLETO Programação OO + Projetos</h3>
+    <p class="autor">Nelio Alves</p>
+    <p class="avaliacao">⭐ 4,8 (60.515)</p>
+    <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+    <button>Mais vendidos</button>
+  </a>
+
+  <a href="curso1.html" class="curso-card">
+    <img src="img/educacao-financeira3.jpg" alt="Curso 1">
+    <h3>Java COMPLETO Programação OO + Projetos</h3>
+    <p class="autor">Nelio Alves</p>
+    <p class="avaliacao">⭐ 4,8 (60.515)</p>
+    <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+    <button>Mais vendidos</button>
+  </a>
+
+  <a href="curso1.html" class="curso-card">
+    <img src="img/educacao-financeira4.png" alt="Curso 1">
+    <h3>Java COMPLETO Programação OO + Projetos</h3>
+    <p class="autor">Nelio Alves</p>
+    <p class="avaliacao">⭐ 4,8 (60.515)</p>
+    <p class="preco"><span class="preco-atual">R$32,90</span> <span class="preco-antigo">R$196,90</span></p>
+    <button>Mais vendidos</button>
+  </a>
+  </div>
+</body>
+</html>

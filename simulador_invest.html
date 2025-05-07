@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Investimento</title>
+    <style>
+        /* Estilo Geral */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2575fc;
+        }
+
+        .disabled {
+            background-color: #d1d1d1;
+            cursor: not-allowed;
+        }
+
+        #chartContainer {
+            margin-top: 30px;
+        }
+
+        canvas {
+            border-radius: 10px;
+        }
+
+        .meta-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .meta-buttons button {
+            width: 48%;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            color: #333;
+            text-align: center;
+        }
+
+        .result-container h3 {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Investimento</h1>
+        <div class="form-group">
+            <label for="valorInvestido">Valor a Investir (R$):</label>
+            <input type="number" id="valorInvestido" placeholder="Ex: 1000" required>
+        </div>
+        <div class="form-group">
+            <label for="taxaJuros">Taxa de Juros Anual (%):</label>
+            <input type="number" id="taxaJuros" placeholder="Ex: 5" required>
+        </div>
+        <div class="form-group">
+            <label for="periodo">Período (anos):</label>
+            <input type="number" id="periodo" placeholder="Ex: 5" required>
+        </div>
+        <button id="travarMetaBtn" onclick="travarMeta()">Travar Meta</button>
+        <button id="mudarMetaBtn" style="display: none;" onclick="mudarMeta()">Mudar Meta</button>
+
+        <div id="chartContainer">
+            <canvas id="investmentChart"></canvas>
+        </div>
+
+        <!-- Container para mostrar o valor final -->
+        <div id="resultadoInvestimento" class="result-container" style="display: none;">
+            <h3>Valor Final após o Período: R$ <span id="valorFinal"></span></h3>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='home.php';">Voltar para Home</button>
+    </div>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let metaTrancada = false; // Flag para verificar se a meta está travada
+        let chart;
+
+        function calcularInvestimento() {
+            const valorInvestido = parseFloat(document.getElementById('valorInvestido').value);
+            const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100 / 12; // Dividir por 12 para taxa mensal
+            const periodo = parseInt(document.getElementById('periodo').value) * 12; // Converter anos em meses
+            const montante = [];
+            const meses = [];
+
+            for (let i = 0; i <= periodo; i++) {
+                const valorFuturo = valorInvestido * Math.pow(1 + taxaJuros, i);
+                montante.push(valorFuturo.toFixed(2));
+                meses.push(i);
+            }
+
+            mostrarGrafico(meses, montante);
+
+            // Exibir valor final após o período
+            const valorFinal = montante[periodo];
+            document.getElementById('valorFinal').textContent = valorFinal;
+            document.getElementById('resultadoInvestimento').style.display = 'block';
+        }
+
+        function mostrarGrafico(meses, montante) {
+            const ctx = document.getElementById('investmentChart').getContext('2d');
+            if (chart) {
+                chart.destroy(); // Destrói o gráfico anterior se existir
+            }
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: meses.map(m => `Mês ${m}`),
+                    datasets: [{
+                        label: 'Valor do Investimento (R$)',
+                        data: montante,
+                        borderColor: '#6a11cb',
+                        backgroundColor: 'rgba(106, 17, 203, 0.2)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Valor (R$)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Meses'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function travarMeta() {
+            if (!metaTrancada) {
+                metaTrancada = true;
+                document.getElementById('travarMetaBtn').classList.add('disabled');
+                document.getElementById('travarMetaBtn').disabled = true;
+                document.getElementById('mudarMetaBtn').style.display = 'block';
+
+                calcularInvestimento(); // Calcular investimento ao travar a meta
+            }
+        }
+
+        function mudarMeta() {
+            metaTrancada = false;
+            document.getElementById('travarMetaBtn').classList.remove('disabled');
+            document.getElementById('travarMetaBtn').disabled = false;
+            document.getElementById('mudarMetaBtn').style.display = 'none';
+
+            // Limpar os campos para permitir nova entrada
+            document.getElementById('valorInvestido').value = '';
+            document.getElementById('taxaJuros').value = '';
+            document.getElementById('periodo').value = '';
+            document.getElementById('investmentChart').getContext('2d').clearRect(0, 0, document.getElementById('investmentChart').width, document.getElementById('investmentChart').height);
+            document.getElementById('resultadoInvestimento').style.display = 'none'; // Ocultar resultado
+        }
+    </script>
+</body>
+</html>

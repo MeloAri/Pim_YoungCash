@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Assinatura - Educação Financeira</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+  /* Estilos Globais */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #5a16da;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+    background-color: gold;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos */
+h1 {
+    font-size: 48px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: gold;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilos para Planos */
+.plans {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    flex: 1 1 30%;
+    margin: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.plan:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos de Lista */
+.plan h2 {
+    margin-top: 0;
+    font-size: 28px;
+    border-bottom: 4px solid black;
+    padding-bottom: 10px;
+}
+
+.plan ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan li {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #555;
+    position: relative;
+    padding-left: 25px;
+}
+
+.plan li::before {
+    content: "\2022";
+    color: gold;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Botão de Assinatura */
+.botao-assinar {
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%; /* Botão ocupa toda a largura */
+}
+
+.botao-assinar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #000000;
+    border-top: 1px solid #000000;
+    padding-top: 15px;
+    position: relative;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .plans {
+        flex-direction: column;
+    }
+
+    .plan {
+        flex: 1 1 100%; /* Cada plano ocupa 100% em telas menores */
+        margin: 10px 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Planos de Assinatura</h1>
+        <p>Escolha o plano que melhor se adapta às suas necessidades e comece sua jornada de educação financeira hoje mesmo!</p>
+        
+        <div class="plans">
+            <div class="plan">
+                <h2>Plano Mensal</h2>
+                <p><strong>Preço:</strong> R$ 29,90/mês</p>
+                <ul>
+                    <li>Acesso ilimitado a todos os cursos e materiais</li>
+                    <li>Webinars mensais com especialistas em finanças</li>
+                    <li>Acesso a uma comunidade exclusiva de assinantes</li>
+                    <li>Newsletter semanal com dicas e novidades</li>
+                </ul>
+            </div>
+            <div class="plan">
+                <h2>Plano Trimestral</h2>
+                <p><strong>Preço:</strong> R$ 79,90 (R$ 26,63/mês)</p>
+                <ul>
+                    <li>Todos os benefícios do plano mensal</li>
+                    <li>10% de desconto em relação ao plano mensal</li>
+                    <li>Acesso antecipado a novos cursos</li>
+                    <li>Sessões de perguntas e respostas trimestrais com especialistas</li>
+                </ul>
+            </div>
+            <div class="plan">
+                <h2>Plano Semestral</h2>
+                <p><strong>Preço:</strong> R$ 149,90 (R$ 24,98/mês)</p>
+                <ul>
+                    <li>Todos os benefícios do plano trimestral</li>
+                    <li>17% de desconto em relação ao plano mensal</li>
+                    <li>Certificado de conclusão para cada curso</li>
+                    <li>Consultoria financeira personalizada (1 sessão por semestre)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Como Assinar</h3>
+        <ol>
+            <li>Escolha o plano desejado.</li>
+            <li>Preencha o formulário de inscrição.</li>
+            <li>Realize o pagamento e comece a aprender!</li>
+        </ol>
+
+        <h3>Perguntas Frequentes</h3>
+        <p><strong>Posso cancelar minha assinatura a qualquer momento?</strong><br>
+        Sim, você pode cancelar sua assinatura a qualquer momento, e não será cobrado novamente.</p>
+        
+        <p><strong>Os cursos são atualizados regularmente?</strong><br>
+        Sim, estamos sempre atualizando e adicionando novos cursos para garantir que você tenha acesso ao conteúdo mais relevante.</p>
+        <button class="botao-assinar">Assinar agora!</button>
+        <div class="footer">
+            <p>&copy; 2023 Educação Financeira. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>
