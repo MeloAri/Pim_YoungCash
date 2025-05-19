@@ -1,39 +1,40 @@
 <?php
 session_start();
-    // Verifica se o formulário foi enviado e se os campos não estão vazios
-    if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
-        include_once('config.php'); // Inclui o arquivo de configuração/conexão com o banco de dados
+include_once('config.php');
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $tipo_usuario = $_POST['tipo_usuario'];
+
+    // Verificar credenciais no banco de dados
+    $query = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha' AND tipo = '$tipo_usuario'";
+    $result = mysqli_query($conexao, $query);
+
+    if (mysqli_num_rows($result) == 1) {
+        $usuario = mysqli_fetch_assoc($result);
         
-        // Coleta os valores enviados do formulário
-        $email = $_POST['email'];  
-        $senha = $_POST['senha'];
-
-        // Exibe os valores para testes (opcional, removido o comentário inválido)
-        // echo 'Email: ' . $email . '<br>';
-        // echo 'Senha: ' . $senha . '<br>';
-
-        // Consulta SQL
-        $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
-
-        // Executa a consulta
-        $result = $conexao->query($sql);
-
-        // Verifica se houve resultados na consulta
-        if (mysqli_num_rows($result) < 1) {
-            unset($_SESSION['email']);
-            unset($_SESSION['senha']);
-            header('Location: login.php');
-            exit();
+        // Armazenar dados na sessão
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['tipo_usuario'] = $usuario['tipo'];
+        
+        // Redirecionar conforme o tipo de usuário
+        if ($tipo_usuario == 'professor') {
+            header("Location: homeProfessor.php");
         } else {
-            $_SESSION['email'] = $email;
-            $_SESSION['senha'] = $senha;
-            header('Location: home.php');
-            exit();
+            header("Location: home.php");
         }
-       
+        exit();
     } else {
-        // Redireciona de volta para a página de login caso os campos estejam vazios
-        header('Location: login.php');
-        exit(); 
+        // Login falhou
+        header("Location: login.php?erro=1");
+        exit();
     }
+} else {
+    // Acesso direto ao arquivo
+    header("Location: login.php");
+    exit();
+}
 ?>
