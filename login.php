@@ -1,45 +1,44 @@
 <?php
 session_start();
-$erro = isset($_GET['erro']) ? $_GET['erro'] : 0;
 include_once('config.php');
 
-// Verifica se é uma submissão de formulário
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $tipo_usuario = $_POST['tipo_usuario'];
+$erro = 0;
 
-    // Consulta segura usando prepared statements
-    $query = "SELECT * FROM usuarios WHERE email = ? AND tipo = ?";
-    $stmt = mysqli_prepare($conexao, $query);
-    mysqli_stmt_bind_param($stmt, "ss", $email, $tipo_usuario);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+    $tipo_usuario = $_POST['tipo_usuario'] ?? '';
 
-    if (mysqli_num_rows($result) == 1) {
-        $usuario = mysqli_fetch_assoc($result);
-        
-        // Verifica a senha (DEVE usar password_verify se as senhas estiverem com hash)
-        if ($senha === $usuario['senha']) { // REMOVA ESTA LINHA SE USAR HASH
-        // if (password_verify($senha, $usuario['senha'])) { // USE ESTA LINHA PARA HASH
-            
-            // Armazena dados na sessão
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['email'] = $usuario['email'];
-            $_SESSION['tipo_usuario'] = $usuario['tipo'];
-            
-            // Redireciona conforme o tipo de usuário
-            header("Location: " . ($tipo_usuario == 'professor' ? 'homeProfessor.php' : 'home.php'));
-            exit();
+    $tipos_validos = ['estudante', 'professor'];
+    if (!in_array($tipo_usuario, $tipos_validos)) {
+        $erro = 1;
+    } else {
+        $query = "SELECT * FROM usuarios WHERE email = ? AND tipo = ?";
+        $stmt = mysqli_prepare($conexao, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $email, $tipo_usuario);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result && mysqli_num_rows($result) === 1) {
+            $usuario = mysqli_fetch_assoc($result);
+            if (password_verify($senha, $usuario['senha'])) {
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['nome'] = $usuario['nome'];
+                $_SESSION['email'] = $usuario['email'];
+                $_SESSION['tipo_usuario'] = $usuario['tipo'];
+
+                header("Location: " . ($tipo_usuario == 'professor' ? 'homeProfessor.php' : 'home.php'));
+                exit();
+            } else {
+                $erro = 1;
+            }
+        } else {
+            $erro = 1;
         }
     }
-    
-    // Login falhou
-    header("Location: login.php?erro=1");
-    exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">

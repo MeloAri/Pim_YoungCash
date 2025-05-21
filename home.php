@@ -51,7 +51,7 @@ if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)
          <nav class="navbar">
             <a href="#home">Inicio</a>
             <a href="estudo.html">Aprenda</a>
-            <a href="formulários.html">exercícios</a>
+            <a href="formulários.php">exercícios</a>
             <a href="simulador_invest.html">Investimento</a>
             <a href="#reviews">opniões</a>
             <a href="#contact">contato</a>
